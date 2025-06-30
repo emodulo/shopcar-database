@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: postgres-init-job
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      containers:
+        - name: init-postgres
+          image: postgres:15.1-alpine
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              echo "Aguardando 2 minutos para garantir que o PostgreSQL esteja disponível...";
+              sleep 150;
+              echo "Conectando ao PostgreSQL...";
+              PGPASSWORD=$POSTGRES_PASSWORD psql -h postgres-service -U $POSTGRES_USER -d $POSTGRES_DB -c "CREATE SCHEMA IF NOT EXISTS ordering; CREATE SCHEMA IF NOT EXISTS vehicle;"
+          envFrom:
+            - configMapRef:
+                name: postgres-config
+            - secretRef:
+                name: postgres-secret
+      restartPolicy: Never

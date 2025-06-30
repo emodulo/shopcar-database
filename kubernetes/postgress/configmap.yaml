@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  labels:
+    app: postgres
+data:
+  POSTGRES_DB: "eModulo"
+  init.sql: "psql -U postgres -d eModulo -c 'CREATE SCHEMA IF NOT EXISTS ordering;CREATE SCHEMA IF NOT EXISTS vehicle;'"

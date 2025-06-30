@@ -32,6 +32,6 @@ jobs:
 
       - name: Aplicar manifests PostgreSQL
         run: |
-          kubectl apply -f kubernetes/postgresql/pv.yaml
-          kubectl apply -f kubernetes/postgresql/pvc.yaml
-          kubectl apply -f kubernetes/postgresql/
+          kubectl apply -f kubernetes/postgres/pv.yaml
+          kubectl apply -f kubernetes/postgres/pvc.yaml
+          kubectl apply -f kubernetes/postgres/

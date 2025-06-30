@@ -33,4 +33,4 @@ jobs:
 
       - name: Remover manifests PostgreSQL
         run: |
-          kubectl delete -f kubernetes/postgresql/ --ignore-not-found
+          kubectl delete -f kubernetes/postgres/ --ignore-not-found

@@ -2,6 +2,11 @@ name: Destroy Databases from EKS
 
 on:
   workflow_dispatch:
+    inputs:
+      confirm:
+        description: "Tem certeza que deseja destruir a infraestrutura? Digite: sim"
+        required: true
+        default: "não"
 
 jobs:
   destroy:
